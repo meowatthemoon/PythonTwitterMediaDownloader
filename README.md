@@ -17,6 +17,6 @@ Aditional Requirement: [ffmpeg](https://ffmpeg.org/).
 Usage
 =====
 
-`import TwitterDownloader'
+`import TwitterDownloader`
 
-'TwitterDownloader.download("elonmusk", "./images", "./videos")`
+`TwitterDownloader.download("elonmusk", "./images", "./videos")`
