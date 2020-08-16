@@ -1,0 +1,5 @@
+requests
+m3u8
+ffmpeg-python
+tweepy
+wget
