@@ -9,6 +9,10 @@ Installation
 
 Aditional Requirement: [ffmpeg](https://ffmpeg.org/).
 
+Get Twitter Developer Keys from [TwitterDeveloper](https://developer.twitter.com/).
+
+Replace TwitterDownloader.py placeholders.
+
 Usage
 =====
 
