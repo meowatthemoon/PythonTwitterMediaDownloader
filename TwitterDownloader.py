@@ -4,7 +4,7 @@ import json
 import wget
 import os
 import twitter_video_dl
-
+from tqdm import tqdm
 # Based on https://miguelmalvarez.com/2015/03/03/download-the-pictures-from-a-twitter-feed-using-python/
 
 consumer_key = 'YOUR_TWITTER_CONSUMER_KEY'
@@ -56,20 +56,12 @@ def get_images_videos(username, img_dir, video_dir, include_rts=True, exclude_re
 
     print(f"Found {len(tweets)} tweets")
 
-    media_files = set()
-    for status in tweets:
+    for status in tqdm(tweets):
         media = status.entities.get('media', [])
         if len(media) > 0:
             if "ext_tw_video" in media[0]['media_url']:  # video
-                media_files.add(media[0]['expanded_url'])
+                twitter_video_dl.download(media[0]['expanded_url'], video_dir)
             else:  # image
-                media_files.add(media[0]['media_url'])
-
-    for index, media_file in enumerate(media_files):
-        if "/video/" in media_file:
-            twitter_video_dl.download(media_file, video_dir)
-        else:
-            wget.download(media_file, out=img_dir + str(index) + ".jpg")
-
+                wget.download(media[0]['media_url'], out=img_dir + str(media[0]["id"]) + ".jpg")
 
 get_images_videos("elonmusk", "imgs", "videos")
